@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:val_app/pages/chat_page.dart';
 import 'package:val_app/service/agents_provider.dart';
 import 'package:val_app/service/weapons_provider.dart';
 import 'package:val_app/pages/agent_detail_page.dart';
@@ -18,7 +19,7 @@ class _HomePageState extends State<HomePage> {
     final weaponsProvider = Provider.of<WeaponsProvider>(context);
 
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Scaffold(
         appBar: AppBar(
           title: Center(
@@ -36,6 +37,7 @@ class _HomePageState extends State<HomePage> {
             tabs: [
               Tab(text: 'AGENTS'),
               Tab(text: 'WEAPONS'),
+              Tab(text: 'AskAI'),
             ],
           ),
           backgroundColor: Colors.grey[900],
@@ -170,6 +172,45 @@ class _HomePageState extends State<HomePage> {
                       );
                     },
                   ),
+
+            // Ask AI page
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      'assets/val_teks.png',
+                      height: 150,
+                    ),
+                    Text('Unlimited Access to Valorant Knowledge! Ask AI for Any Information from Weapons to Tactics!', style: const TextStyle(
+                      color: Colors.white,
+                    )),
+                    const SizedBox(height: 20),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ChatPage(), // Navigasi ke halaman Ask AI
+                          ),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                        textStyle: const TextStyle(
+                          color: Colors.lightBlue,
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      child: const Text('AskAI',),
+                    ),
+                  ],
+                ),
+              ),
+            )
           ],
         ),
         backgroundColor: Colors.grey[900],
